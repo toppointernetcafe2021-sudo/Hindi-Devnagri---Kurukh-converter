@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>देवनागरी → कुँड़ुख़ बन्ना</title>
+<style>
+/* ===== FONT ===== */
+@font-face {
+  font-family: 'KuruxBanna Xalxo';
+  src: url('./kurukh.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ===== ROOT ===== */
+:root {
+  --bg-start: #0d0b1a;
+  --bg-end: #1a0e2a;
+  --border-glow: rgba(255, 255, 255, 0.15);
+  --text-primary: #f0f0f0;
+  --text-secondary: #c0c0c0;
+  --text-muted: #8888aa;
+  --shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --radius: 20px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  min-height: 100vh;
+  background: linear-gradient(145deg, var(--bg-start), var(--bg-end));
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  line-height: 1.6;
+}
+.wrap {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.header h1 {
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 800;
+  background: linear-gradient(135deg, #facc15, #f97316, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 30px rgba(250, 204, 21, 0.2);
+}
+.header p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  margin-top: 6px;
+}
+.header p span {
+  background: rgba(255,255,255,0.06);
+  padding: 2px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border-glow);
+}
+
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 12px 48px rgba(0,0,0,0.6); }
+
+/* Input card – warm gold */
+.card-input {
+  background: linear-gradient(145deg, rgba(255, 215, 0, 0.10), rgba(249, 115, 22, 0.05));
+  border-color: rgba(255, 215, 0, 0.25);
+}
+.card-input .card-head {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(249, 115, 22, 0.08));
+  border-bottom: 1px solid rgba(255, 215, 0, 0.20);
+}
+.card-input .card-head h2 { color: #facc15; }
+.card-input .card-head .icon { color: #facc15; }
+
+/* Output card – cool cyan/purple */
+.card-output {
+  background: linear-gradient(145deg, rgba(0, 191, 255, 0.10), rgba(168, 85, 247, 0.05));
+  border-color: rgba(0, 191, 255, 0.25);
+}
+.card-output .card-head {
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.18), rgba(168, 85, 247, 0.08));
+  border-bottom: 1px solid rgba(0, 191, 255, 0.20);
+}
+.card-output .card-head h2 { color: #60cfff; }
+.card-output .card-head .icon { color: #60cfff; }
+
+.card-head {
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.card-head h2 { font-size: 18px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+.card-head .icon { font-size: 24px; line-height: 1; }
+
+.card-body { padding: 20px 22px; }
+
+/* ===== TEXTAREA ===== */
+textarea {
+  width: 100%;
+  min-height: 72px;
+  max-height: 500px;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  background: rgba(0,0,0,0.35);
+  color: #fff7db;
+  padding: 14px 16px;
+  outline: none;
+  resize: none;
+  line-height: 1.7;
+  font-size: 18px;
+  font-family: inherit;
+  transition: 0.25s;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+}
+.card-input textarea:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.15), inset 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* ===== OUTPUT ===== */
+.output {
+  min-height: 180px;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  background: rgba(0,0,0,0.35);
+  color: #fff7db;
+  padding: 14px 16px;
+  line-height: 1.5;
+  font-size: 40px;
+  font-family: 'KuruxBanna Xalxo', 'Noto Sans Devanagari', sans-serif;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  cursor: pointer;
+  user-select: text;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+  transition: 0.25s;
+}
+.output.empty::before {
+  content: "✨ बन्ना यहाँ चमकेगा — क्लिक करें कॉपी के लिए";
+  color: #8888aa;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+}
+.card-output .output:focus {
+  border-color: #60cfff;
+  box-shadow: 0 0 0 4px rgba(0, 191, 255, 0.15), inset 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* ===== BUTTONS ===== */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+  justify-content: flex-start;
+}
+button {
+  border: none;
+  border-radius: 40px;
+  padding: 10px 22px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  border: 1px solid transparent;
+}
+button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+button:active { transform: scale(0.96); }
+
+.card-input .btn-primary {
+  background: linear-gradient(135deg, #facc15, #f59e0b);
+  color: #1a1a2e;
+  border-color: #facc15;
+}
+.card-input .btn-primary:hover { background: linear-gradient(135deg, #fde047, #fbbf24); }
+.card-input .btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-color: #ef4444;
+}
+.card-input .btn-ghost {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.15);
+  color: var(--text-secondary);
+}
+.card-input .btn-ghost:hover { background: rgba(255,255,255,0.12); }
+
+.card-output .btn-primary {
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+  border-color: #38bdf8;
+}
+.card-output .btn-primary:hover { background: linear-gradient(135deg, #7dd3fc, #a78bfa); }
+.card-output .btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-color: #ef4444;
+}
+.card-output .btn-ghost {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.15);
+  color: var(--text-secondary);
+}
+.card-output .btn-ghost:hover { background: rgba(255,255,255,0.12); }
+
+/* ===== INFO SECTION ===== */
+.info-section {
+  margin-top: 40px;
+  padding: 24px 20px;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-glow);
+  backdrop-filter: blur(4px);
+}
+.info-section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #facc15, #ec4899, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.info-card {
+  background: rgba(0,0,0,0.25);
+  border-radius: 16px;
+  padding: 18px 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.info-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-bottom: 8px;
+}
+.info-card .char-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 6px;
+}
+.info-card .char-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  padding: 6px 4px;
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.info-card .char-item .kurukh-char {
+  font-family: 'KuruxBanna Xalxo', sans-serif;
+  font-size: 28px;
+  line-height: 1.3;
+}
+.info-card .char-item .roman-char {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: rgba(0,0,0,0.3);
+  padding: 0 8px;
+  border-radius: 10px;
+}
+.info-card .group-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #facc15;
+  margin: 10px 0 6px;
+  grid-column: 1 / -1;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: 28px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  border-top: 1px solid var(--border-glow);
+  padding-top: 18px;
+}
+.footer strong {
+  color: var(--text-secondary);
+}
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%) translateY(16px);
+  background: #1e1b2e;
+  color: #f0f0f0;
+  border: 1px solid var(--border-glow);
+  border-radius: 40px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .grid { grid-template-columns: 1fr; gap: 18px; }
+  .info-grid { grid-template-columns: 1fr; }
+  body { padding: 16px 12px; }
+  .card-body { padding: 16px; }
+  .output { font-size: 32px; min-height: 150px; }
+}
+@media (max-width: 480px) {
+  .header h1 { font-size: 24px; }
+  button { padding: 8px 14px; font-size: 13px; }
+  .info-card .char-grid { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
+  .output { font-size: 26px; }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>देवनागरी → कुँड़ुख़ बन्ना</h1>
+    <p><span>⌨️ टाइप करें · रियल-टाइम</span> <span>🔮 आउटपुट क्लिक करें कॉपी</span></p>
+  </div>
+
+  <div class="grid">
+    <!-- Input Card -->
+    <div class="card card-input">
+      <div class="card-head">
+        <span class="icon">✍️</span>
+        <h2>देवनागरी इनपुट</h2>
+      </div>
+      <div class="card-body">
+        <textarea id="inputText" placeholder="यहाँ देवनागरी टाइप करें...">कुँड़ुख़ भाषा हमारी पहचान है</textarea>
+        <div class="actions">
+          <button id="copyInput" class="btn-primary">📋 कॉपी</button>
+          <button id="clearInput" class="btn-danger">🗑️ साफ़</button>
+          <button id="sampleInput" class="btn-ghost">✨ नमूना</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Output Card -->
+    <div class="card card-output">
+      <div class="card-head">
+        <span class="icon">🔤</span>
+        <h2>कुँड़ुख़ बन्ना आउटपुट</h2>
+      </div>
+      <div class="card-body">
+        <div id="outputText" class="output empty" tabindex="0" title="Click to copy"></div>
+        <div class="actions">
+          <button id="copyOutput" class="btn-primary">📋 कॉपी</button>
+          <button id="downloadTxt" class="btn-ghost">📄 .txt</button>
+          <button id="downloadPNG" class="btn-ghost">🖼️ PNG</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== INFO SECTION ===== -->
+  <div class="info-section">
+    <h2>📚 कुँड़ुख़ बन्ना वर्णमाला और कीमैप</h2>
+    <div class="info-grid">
+      <!-- Left: Alphabet Chart (Devanagari → Kurukh) -->
+      <div class="info-card">
+        <h3>🔠 देवनागरी → कुँड़ुख़ बन्ना</h3>
+        <div class="char-grid" id="alphabetChart"><!-- JS --></div>
+      </div>
+      <!-- Right: Keymap (Roman → Kurukh) – now in Kurukh glyphs -->
+      <div class="info-card">
+        <h3>⌨️ कीमैप (रोमन → कुँड़ुख़)</h3>
+        <div class="char-grid" id="keymapChart"><!-- JS --></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    🪶 <strong>कुँड़ुख़ बन्ना</strong> · संरक्षण · डिज़ाइन व विकास <strong>रोशन तोप्पो</strong>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+//  DEVANAGARI → KURUKH CONVERTER (FIXED)
+//  - FIXED: conjunct index bug (i += 2 + matraSkipped)
+//  - FIXED: space now works correctly
+//  - 'ि' (i) goes before consonant, 'ी' (I) stays after
+//  - halant produces '-' between conjuncts
+//  - auto-resizing textarea
+// ============================================================
+
+const inputText = document.getElementById('inputText');
+const outputText = document.getElementById('outputText');
+const toast = document.getElementById('toast');
+
+// ---- Devanagari → Roman (exact match) ----
+const consMap = {
+  'क':'k', 'ख':'K', 'ग':'g', 'घ':'G', 'ङ':'<',
+  'च':'c', 'छ':'C', 'ज':'j', 'झ':'J', 'ञ':'^',
+  'ट':'t', 'ठ':'T', 'ड':'L', 'ढ':'X', 'ण':'F',
+  'त':'z', 'थ':'Z', 'द':'d', 'ध':'D', 'न':'n',
+  'प':'p', 'फ':'f', 'ब':'b', 'भ':'B', 'म':'m',
+  'य':'y', 'र':'r', 'ल':'l', 'व':'v',
+  'श':'S', 'ष':'{', 'स':'s', 'ह':'h',
+  'क्ष':'H', 'त्र':'}', 'ज्ञ':'>', 'ड़':'P', 'ढ़':'R', 'ख़':'x'
+};
+
+const vowelMap = {
+  'अ':'A', 'आ':'Aa', 'इ':'q', 'ई':'Q', 'उ':'w', 'ऊ':'W',
+  'ए':'V', 'ऐ':'Y', 'ओ':'Ao', 'औ':'AO', 'अं':'AN', 'अँ':'AM'
+};
+
+const matraMap = {
+  'ा':'a', 'ि':'i', 'ी':'I', 'ु':'u', 'ू':'U',
+  'े':'e', 'ै':'E', 'ो':'o', 'ौ':'O',
+};
+
+const signMap = { 'ं':'N', 'ँ':'M', 'ः':'[', '्':'-', '।':'a' };
+
+const specialPhrases = [
+  ['क्ष','H'], ['त्र','}'], ['ज्ञ','>'], ['ड़','P'], ['ढ़','R'], ['ख़','x'], ['ज़','j']
+];
+
+function normalizeDn(text) {
+  let t = text;
+  for (const [src, dst] of specialPhrases) t = t.split(src).join(dst);
+  return t;
+}
+
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => toast.classList.remove('show'), 1200);
+}
+
+// ----- AUTO-RESIZE -----
+function autoResize() {
+  inputText.style.height = 'auto';
+  inputText.style.height = inputText.scrollHeight + 'px';
+}
+
+// ----- CONVERSION (FIXED: index bug) -----
+function dnToKurukh(text) {
+  text = normalizeDn(text);
+  let out = '';
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    // Handle spaces, newlines, tabs
+    if (ch === ' ' || ch === '\n' || ch === '\t') {
+      out += ch;
+      continue;
+    }
+
+    // ---- Consonant ----
+    if (consMap[ch]) {
+      const token1 = consMap[ch];
+      const next = text[i + 1];
+
+      // ---- Halant (conjunct) ----
+      if (next === '्') {
+        const next2 = text[i + 2];
+        if (consMap[next2]) {
+          let token2 = consMap[next2];
+          let matraToken = '';
+          let matraSkipped = 0;
+          const next3 = text[i + 3];
+          if (next3 && matraMap[next3]) {
+            matraToken = matraMap[next3];
+            matraSkipped = 1;
+            // 'i' goes before consonant, others after
+            if (matraToken === 'i') {
+              token2 = matraToken + token2;
+            } else {
+              token2 = token2 + matraToken;
+            }
+          }
+          out += token1 + '-' + token2;
+          // FIX: i += 2 + matraSkipped (was 3 + matraSkipped)
+          i += 2 + matraSkipped;
+          continue;
+        } else {
+          // Halant but no following consonant – just output consonant
+          out += token1;
+          i += 1;
+          continue;
+        }
+      }
+      // ---- Matra ----
+      else if (matraMap[next]) {
+        let token = token1;
+        let matraToken = matraMap[next];
+        // 'i' goes before consonant, others after
+        if (matraToken === 'i') {
+          token = matraToken + token;
+        } else {
+          token = token + matraToken;
+        }
+        out += token;
+        i += 1;
+        continue;
+      }
+      // ---- No matra, no halant ----
+      else {
+        out += token1;
+        continue;
+      }
+    }
+
+    // ---- Vowel (standalone) ----
+    if (vowelMap[ch]) {
+      out += vowelMap[ch];
+      continue;
+    }
+
+    // ---- Matra (standalone) ----
+    if (matraMap[ch]) {
+      out += matraMap[ch];
+      continue;
+    }
+
+    // ---- Signs ----
+    if (signMap[ch] !== undefined) {
+      out += signMap[ch];
+      continue;
+    }
+
+    // ---- Unknown ----
+    out += ch;
+  }
+  return out;
+}
+
+function update() {
+  const converted = dnToKurukh(inputText.value);
+  outputText.textContent = converted;
+  outputText.classList.toggle('empty', !converted.trim());
+  autoResize();
+}
+
+// ----- EVENTS -----
+inputText.addEventListener('input', update);
+inputText.addEventListener('keydown', () => setTimeout(autoResize, 0));
+
+document.getElementById('clearInput').addEventListener('click', () => {
+  inputText.value = '';
+  update();
+  inputText.focus();
+});
+
+document.getElementById('sampleInput').addEventListener('click', () => {
+  inputText.value = 'कुँड़ुख़ भाषा हमारी पहचान है ।';
+  update();
+  inputText.focus();
+});
+
+document.getElementById('copyInput').addEventListener('click', async () => {
+  const text = inputText.value || '';
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast('✅ इनपुट कॉपी हो गया');
+  } catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    showToast('✅ इनपुट कॉपी हो गया');
+  }
+});
+
+document.getElementById('copyOutput').addEventListener('click', () => {
+  const text = outputText.textContent || '';
+  if (!text.trim()) return;
+  const range = document.createRange();
+  range.selectNodeContents(outputText);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  navigator.clipboard.writeText(text).then(() => showToast('✅ बन्ना कॉपी हो गया')).catch(() => showToast('✅ सेलेक्ट हो गया'));
+});
+
+outputText.addEventListener('click', () => document.getElementById('copyOutput').click());
+
+document.getElementById('downloadTxt').addEventListener('click', () => {
+  const blob = new Blob([outputText.textContent || ''], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'kurukh-output.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('✅ .txt डाउनलोड हो गया');
+});
+
+document.getElementById('downloadPNG').addEventListener('click', async () => {
+  const target = document.querySelector('.card-output .card-body');
+  const out = document.getElementById('outputText');
+  if (!out.textContent || !out.textContent.trim()) {
+    showToast('⚠️ आउटपुट खाली है');
+    return;
+  }
+  const oldCursor = out.style.cursor;
+  out.style.cursor = 'default';
+  try {
+    const canvas = await html2canvas(target, { backgroundColor: '#0d0b1a', scale: 3, useCORS: true });
+    const link = document.createElement('a');
+    link.download = 'kurukh-output.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    showToast('✅ PNG तैयार');
+  } catch (err) {
+    console.error(err);
+    showToast('❌ PNG फेल');
+    alert('PNG डाउनलोड नहीं हो पाया। दोबारा कोशिश करें।');
+  } finally {
+    out.style.cursor = oldCursor;
+  }
+});
+
+// ===== POPULATE INFO =====
+function populateInfo() {
+  const alphabetContainer = document.getElementById('alphabetChart');
+  const vowelKeys = Object.keys(vowelMap).filter(k => !['अं','अँ'].includes(k));
+  const consKeys = Object.keys(consMap);
+
+  alphabetContainer.innerHTML = '';
+  let groups = [
+    { label: 'स्वर (Vowels)', items: vowelKeys.map(dn => ({ dn, roman: vowelMap[dn] })) },
+    { label: 'व्यंजन (Consonants)', items: consKeys.map(dn => ({ dn, roman: consMap[dn] })) }
+  ];
+
+  groups.forEach(group => {
+    const label = document.createElement('div');
+    label.className = 'group-label';
+    label.textContent = group.label;
+    alphabetContainer.appendChild(label);
+
+    group.items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'char-item';
+      div.innerHTML = `
+        <span class="kurukh-char">${item.dn}</span>
+        <span class="roman-char">${item.roman}</span>
+      `;
+      alphabetContainer.appendChild(div);
+    });
+  });
+
+  // ---- KEYMAP ----
+  const keymapContainer = document.getElementById('keymapChart');
+  const romanToDn = {};
+  for (const [dn, roman] of Object.entries(consMap)) romanToDn[roman] = dn;
+  for (const [dn, roman] of Object.entries(vowelMap)) romanToDn[roman] = dn;
+
+  const keyItems = Object.keys(romanToDn).map(roman => ({ roman, dn: romanToDn[roman] }));
+
+  const devanagariOrder = [
+    'अ','आ','इ','ई','उ','ऊ','ए','ऐ','ओ','औ',
+    'क','ख','ग','घ','ङ',
+    'च','छ','ज','झ','ञ',
+    'ट','ठ','ड','ढ','ण',
+    'त','थ','द','ध','न',
+    'प','फ','ब','भ','म',
+    'य','र','ल','व',
+    'श','ष','स','ह',
+    'क्ष','त्र','ज्ञ','श्र','ड़','ढ़','ख़'
+  ];
+  const orderIndex = {};
+  devanagariOrder.forEach((ch, idx) => orderIndex[ch] = idx);
+
+  keyItems.sort((a, b) => {
+    const idxA = orderIndex[a.dn] !== undefined ? orderIndex[a.dn] : 999;
+    const idxB = orderIndex[b.dn] !== undefined ? orderIndex[b.dn] : 999;
+    return idxA - idxB;
+  });
+
+  const single = keyItems.filter(item => item.roman.length === 1);
+  const multi = keyItems.filter(item => item.roman.length > 1);
+
+  const keyGroups = [
+    { label: 'एकाक्षर (Single)', items: single },
+    { label: 'संयुक्त (Multi)', items: multi }
+  ];
+
+  keymapContainer.innerHTML = '';
+  keyGroups.forEach(group => {
+    const label = document.createElement('div');
+    label.className = 'group-label';
+    label.textContent = group.label;
+    keymapContainer.appendChild(label);
+
+    group.items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'char-item';
+      div.innerHTML = `
+        <span class="kurukh-char">${item.roman}</span>
+        <span class="roman-char">${item.roman}</span>
+      `;
+      keymapContainer.appendChild(div);
+    });
+  });
+}
+
+// ----- INIT -----
+inputText.value = 'कुँड़ुख़ भाषा हमारी पहचान है ।';
+update();
+populateInfo();
+</script>
+</body>
+</html>
