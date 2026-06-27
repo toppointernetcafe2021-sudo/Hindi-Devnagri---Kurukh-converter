@@ -4,6 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
 <title>देवनागरी → कुँड़ुख़ बन्ना</title>
+
+<!-- ===== YEH 2 LINES MAINE ADD KI HAIN (PWA KE LIYE) ===== -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#facc15">
+<!-- ===== BAAS ITNA HI ===== -->
+
 <style>
 /* ===== FONT ===== */
 @font-face {
@@ -1260,6 +1266,15 @@ setTimeout(() => { if (document.getElementById('bgLetters').children.length === 
 inputText.value = 'कुँड़ुख़ भाषा हमारी पहचान है ।';
 update();
 populateInfo();
+
+// ============================================================
+//  ===== YEH SERVICE WORKER REGISTER MAINE ADD KIYA HAI =====
+// ============================================================
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js')
+    .then(() => console.log('✅ Service Worker registered successfully'))
+    .catch(err => console.log('❌ Service Worker registration failed', err));
+}
 </script>
 </body>
 </html>
