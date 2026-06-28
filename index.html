@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
-<title>देवनागरी → कुँड़ुख़ बन्ना</title>
+<title>देवनागरी → कुँड़ुख़ बन्ना</title>
 
 <!-- ===== YEH 2 LINES MAINE ADD KI HAIN (PWA KE LIYE) ===== -->
 <link rel="manifest" href="manifest.json">
@@ -731,7 +731,7 @@ button, .output, .char-item { touch-action: manipulation; }
 
 <div class="wrap">
   <div class="header">
-    <h1>देवनागरी → कुँड़ुख़ बन्ना</h1>
+    <h1>देवनागरी → कुँड़ुख़ बन्ना</h1>
     <p><span>⌨️ टाइप करें · रियल-टाइम</span> <span>🔮 आउटपुट क्लिक करें कॉपी</span></p>
   </div>
 
@@ -743,7 +743,7 @@ button, .output, .char-item { touch-action: manipulation; }
         <h2>देवनागरी इनपुट</h2>
       </div>
       <div class="card-body">
-        <textarea id="inputText" placeholder="यहाँ देवनागरी टाइप करें...">कुँड़ुख़ भाषा हमारी पहचान है</textarea>
+        <textarea id="inputText" placeholder="यहाँ देवनागरी टाइप करें...">कुँड़ुख़ भाषा हमारी पहचान है</textarea>
         <div class="actions">
           <button id="copyInput" class="btn-primary">📋 कॉपी</button>
           <button id="clearInput" class="btn-danger">🗑️ साफ़</button>
@@ -756,7 +756,7 @@ button, .output, .char-item { touch-action: manipulation; }
     <div class="card card-output">
       <div class="card-head">
         <span class="icon">🔤</span>
-        <h2>कुँड़ुख़ बन्ना आउटपुट</h2>
+        <h2>कुँड़ुख़ बन्ना आउटपुट</h2>
       </div>
       <div class="card-body">
         <div id="outputText" class="output empty" tabindex="0" title="Click to copy"></div>
@@ -772,21 +772,21 @@ button, .output, .char-item { touch-action: manipulation; }
 
   <!-- ===== INFO SECTION ===== -->
   <div class="info-section">
-    <h2>📚 कुँड़ुख़ बन्ना वर्णमाला और कीमैप</h2>
+    <h2>📚 कुँड़ुख़ बन्ना वर्णमाला और कीमैप</h2>
     <div class="info-grid">
       <div class="info-card">
-        <h3>🔠 देवनागरी → कुँड़ुख़ बन्ना</h3>
+        <h3>🔠 देवनागरी → कुँड़ुख़ बन्ना</h3>
         <div class="char-grid" id="alphabetChart"></div>
       </div>
       <div class="info-card">
-        <h3>⌨️ कीमैप (रोमन → कुँड़ुख़)</h3>
+        <h3>⌨️ कीमैप (रोमन → कुँड़ुख़)</h3>
         <div class="char-grid" id="keymapChart"></div>
       </div>
     </div>
   </div>
 
   <div class="footer">
-    🪶 <strong>कुँड़ुख़ बन्ना</strong> · संरक्षण · डिज़ाइन व विकास <strong>रोशन तोप्पो</strong>
+    🪶 <strong>कुँड़ुख़ बन्ना</strong> · संरक्षण · डिज़ाइन व विकास <strong>रोशन तोप्पो</strong>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -824,7 +824,7 @@ const matraMap = {
 const signMap = { 'ं':'N', 'ँ':'M', 'ः':'[', '्':'-', '।':'a' };
 
 const specialPhrases = [
-  ['क्ष','H'], ['त्र','}'], ['ज्ञ','>'], ['ड़','P'], ['ढ़','R'], ['ख़','x'], ['ज़','j']
+  ['क्ष','H'], ['त्र','}'], ['ज्ञ','>'], ['ड़','P'], ['ढ़','R'], ['ख़','x'], ['ज़','j']
 ];
 
 function normalizeDn(text) {
@@ -952,7 +952,7 @@ document.getElementById('clearInput').addEventListener('click', () => {
 });
 
 document.getElementById('sampleInput').addEventListener('click', () => {
-  inputText.value = 'कुँड़ुख़ भाषा हमारी पहचान है ।';
+  inputText.value = 'कुँड़ुख़ भाषा हमारी पहचान है ।';
   update();
   inputText.focus();
 });
@@ -997,7 +997,7 @@ document.getElementById('downloadTxt').addEventListener('click', () => {
 });
 
 // ============================================================
-//  COMBINED PNG (देवनागरी + कुँड़ुख़) + DEVELOPER CREDIT
+//  COMBINED PNG (देवनागरी + कुँड़ुख़) + DEVELOPER CREDIT
 // ============================================================
 
 function getCombinedImageBlob() {
@@ -1005,7 +1005,7 @@ function getCombinedImageBlob() {
     const inputTextRaw = inputText.value.trim();
     const outputTextRaw = outputText.textContent.trim();
     if (!outputTextRaw || outputTextRaw === '✨ बन्ना यहाँ चमकेगा') {
-      showToast('⚠️ कुँड़ुख़ आउटपुट खाली है');
+      showToast('⚠️ कुँड़ुख़ आउटपुट खाली है');
       reject('no output');
       return;
     }
@@ -1048,7 +1048,7 @@ function getCombinedImageBlob() {
 
     // Kurukh section
     const kurLabel = document.createElement('div');
-    kurLabel.textContent = '🔤 कुँड़ुख़ बन्ना';
+    kurLabel.textContent = '🔤 कुँड़ुख़ बन्ना';
     kurLabel.style.fontSize = '20px';
     kurLabel.style.fontWeight = '700';
     kurLabel.style.marginBottom = '8px';
@@ -1079,7 +1079,7 @@ function getCombinedImageBlob() {
     footer.style.borderTop = '1px solid rgba(255,255,255,0.04)';
     footer.style.paddingTop = '12px';
     footer.style.letterSpacing = '0.3px';
-    footer.innerHTML = '🪶 कुँड़ुख़ बन्ना · संरक्षण · रोशन तोप्पो';
+    footer.innerHTML = '🪶 कुँड़ुख़ बन्ना · संरक्षण · रोशन तोप्पो';
     container.appendChild(footer);
 
     document.body.appendChild(container);
@@ -1132,8 +1132,8 @@ document.getElementById('shareImage').addEventListener('click', async () => {
     const file = new File([blob], 'devanagari-kurukh.png', { type: 'image/png' });
     if (navigator.share) {
       await navigator.share({
-        title: 'देवनागरी → कुँड़ुख़ बन्ना',
-        text: 'मेरा कुँड़ुख़ बन्ना टेक्स्ट देखें!',
+        title: 'देवनागरी → कुँड़ुख़ बन्ना',
+        text: 'मेरा कुँड़ुख़ बन्ना टेक्स्ट देखें!',
         files: [file],
       });
       showToast('✅ शेयर हो गया');
@@ -1196,7 +1196,7 @@ function populateInfo() {
     'क','ख','ग','घ','ङ','च','छ','ज','झ','ञ',
     'ट','ठ','ड','ढ','ण','त','थ','द','ध','न',
     'प','फ','ब','भ','म','य','र','ल','व',
-    'श','ष','स','ह','क्ष','त्र','ज्ञ','श्र','ड़','ढ़','ख़'
+    'श','ष','स','ह','क्ष','त्र','ज्ञ','श्र','ड़','ढ़','ख़'
   ];
   const orderIndex = {};
   devanagariOrder.forEach((ch, idx) => orderIndex[ch] = idx);
@@ -1263,7 +1263,7 @@ document.fonts.load('1em KuruxBanna Xalxo').then(createBackgroundLetters).catch(
 setTimeout(() => { if (document.getElementById('bgLetters').children.length === 0) createBackgroundLetters(); }, 1000);
 
 // ---- INIT ----
-inputText.value = 'कुँड़ुख़ भाषा हमारी पहचान है ।';
+inputText.value = 'कुँड़ुख़ भाषा हमारी पहचान है ।';
 update();
 populateInfo();
 
